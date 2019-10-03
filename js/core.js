@@ -40,10 +40,9 @@ var calculateBuff = function(building, mission, policy, collection){
 		Object.keys(b.benefit).forEach(function(key){
 			// hard code for 空中别墅 电厂
 			var benefit = b.benefit[key] * b.star;
-			if (key === "在线全局") {
-				if (b.hasOwnProperty('enhance') && b.star > 1) {
-					benefit += b.enhance * (b.star - 1);
-				}
+			
+			if (b.hasOwnProperty('enhance') && b.enhance.hasOwnProperty(key)) {
+				benefit += b.enhance[key] * (b.star - 1);
 			}
 			add(result['building'], key, benefit);
 		});
@@ -86,7 +85,6 @@ var calculateAllValue = function(building, mission, policy, collection, homeligh
 
 
 $("#calculation").on("click", function(){
-	debugger;
 	loadConfigFromPage();
 	var industryB = new Array();
 	var commerceB = new Array();
@@ -177,13 +175,15 @@ $("#calculation").on("click", function(){
 	var last_type;
 
 	// clean the last output
-	debugger;
 	$(".itemblocks").find("td p").each(function(){
 		$(this).text("");
 	});
 
 	var rowMap = {"工业": 1, "商业": 2, "住宅": 3};
 	var last_type;
+	var maxScore = 0;
+	var maxId;
+
 	resultBuilding.forEach(function(b, i){
 		var row = rowMap[b.type];
 
@@ -198,15 +198,26 @@ $("#calculation").on("click", function(){
 		$("#" + id +" p.detail").text("Lv." + parseInt(b.level) + "⭐" + parseInt(b.star));
 		$("#" + id +" p.base").text("基础:" + f(resultDetail[i].basevalue));
 		$("#" + id +" p.total").text("全部:" + f(resultDetail[i].totalvalue));
+		
+		var mult = resultDetail[i].totalvalue/resultDetail[i].basevalue;
+
 		if (b.level < levelLimit) {
-			var score = (Math.log((levelGain[b.level+1] - levelGain[b.level]) / cost[b.rare][b.level], 10) / 
-				Math.log(10) + 15).toFixed(2);
-			debugger;
+			var incr = calculateBasic(b.name, b.offset, b.level + 1, b.star) - 
+				calculateBasic(b.name, b.offset, b.level, b.star);
+			var score = (Math.log(incr * mult / cost[b.rare][b.level], 10) / 
+				Math.log(10) + 12).toFixed(2);
+			if (maxScore < score) {
+				maxScore = score;
+				maxId = id;
+			}
 			$('#' + id +" p.benefit").text("每金升级收益:" + score);
+
 		} else {
 			$('#' + id +" p.benefit").text("已满级");
 		}
 	});
+
+	$('#' + maxId +" p.benefit").css('background-color', 'red');
 
 	$("#result").text("预计总收入为：" + f(maxValue) + "(总遍历"+ resultCnt + "个结果)");
 	
