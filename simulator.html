@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>家国梦模拟器</title>
+	<link rel="stylesheet" href="css/style.css">
+	
+</head>
+<body>
+	<header>
+		<h1>家国梦数值模拟器</h1>
+		<div class='headerbutton'>
+			<button id="calculation" class="calculation">
+					<h2>开始计算</h2>
+			</button>
+			<img src="images/logo.png" alt="EMPTY">
+		</div>
+	</header>
+	<div class="content">
+		<main class="main">
+			<div class="itemblocks">
+				<table>
+					<tr class="row">
+						<td class="col">
+							<h1>工业栏</h1>
+						</td>
+						<td class="col">
+							<div id='r1c1' class="itemblock">
+								<img src="images/icon/buildings.png" alt="EMPTY">
+								<div>
+									<p class="title"></p>
+									<p class="detail"></p>
+									<p class="base"></p>
+									<p class="total"></p>
+									<p class="benefit"></p>
+								</div>
+							</div>
+						</td>
+						<td class="col">
+							<div id='r1c2' class="itemblock">
+								<img src="images/icon/buildings.png" alt="EMPTY">
+								<div>
+									<p class="title"></p>
+									<p class="detail"></p>
+									<p class="base"></p>
+									<p class="total"></p>
+									<p class="benefit"></p>
+								</div>
+							</div>
+						</td>
+						<td class="col">
+							<div id='r1c3' class="itemblock">
+								<img src="images/icon/buildings.png" alt="EMPTY">
+								<div>
+									<p class="title"></p>
+									<p class="detail"></p>
+									<p class="base"></p>
+									<p class="total"></p>
+									<p class="benefit"></p>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr class="row">
+						<td class="col">
+							<h1>商业栏</h1>
+						</td>
+						<td class="col">
+							<div id='r2c1' class="itemblock">
+								<img src="images/icon/buildings.png" alt="EMPTY">
+								<div>
+									<p class="title"></p>
+									<p class="detail"></p>
+									<p class="base"></p>
+									<p class="total"></p>
+									<p class="benefit"></p>
+								</div>
+							</div>
+						</td>
+						<td class="col">
+							<div id='r2c2' class="itemblock">
+								<img src="images/icon/buildings.png" alt="EMPTY">
+								<div>
+									<p class="title"></p>
+									<p class="detail"></p>
+									<p class="base"></p>
+									<p class="total"></p>
+									<p class="benefit"></p>
+								</div>
+							</div>
+						</td>
+						<td class="col">
+							<div id='r2c3' class="itemblock">
+								<img src="images/icon/buildings.png" alt="EMPTY">
+								<div>
+									<p class="title"></p>
+									<p class="detail"></p>
+									<p class="base"></p>
+									<p class="total"></p>
+									<p class="benefit"></p>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr class="row">
+						<td class="col">
+							<h1>住宅栏</h1>
+						</td>
+						<td class="col">
+							<div id='r3c1' class="itemblock">
+								<img src="images/icon/buildings.png" alt="EMPTY">
+								<div>
+									<p class="title"></p>
+									<p class="detail"></p>
+									<p class="base"></p>
+									<p class="total"></p>
+									<p class="benefit"></p>
+								</div>
+							</div>
+						</td>
+						<td class="col">
+							<div id='r3c2' class="itemblock">
+								<img src="images/icon/buildings.png" alt="EMPTY">
+								<div>
+									<p class="title"></p>
+									<p class="detail"></p>
+									<p class="base"></p>
+									<p class="total"></p>
+									<p class="benefit"></p>
+								</div>
+							</div>
+						</td>
+						<td class="col">
+							<div id='r3c3' class="itemblock">
+								<img src="images/icon/buildings.png" alt="EMPTY">
+								<div>
+									<p class="title"></p>
+									<p class="detail"></p>
+									<p class="base"></p>
+									<p class="total"></p>
+									<p class="benefit"></p>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr class="row">
+						<td colspan="4">
+							<h1 id="result"></h1>
+						</td>
+					</tr>
+					<tr class="row">
+						<td colspan="4">
+							<h1 id="supply"></h1>
+						</td>
+					</tr>
+					<tr class="row">
+						<td colspan="4">
+							<h1 id="extra">额外使用说明：</h1>
+							<ul>
+								<li>国庆buff需要添加到政策栏</li>
+								<li>相册加成可以直接点游戏中中国游记右上角的星星查看</li>
+								<li>每金升级收益计算公式：lg(升下级花费/增长的收益) + 15</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+				
+			</div>
+		</main>
+		<aside class="left">
+
+			<div class="buffset">
+				<h1>现有政策加成</h1>
+				<table id="policyblocks">
+					<tr>
+						<th>加成范围</th>
+						<th>效果</th>
+						<th></th>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<button id="policyAddButton" class="addButton"></button>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="buffset">
+				<h1>现有任务加成</h1>
+				<table id="missionblocks">
+					<tr>
+						<th>加成范围</th>
+						<th>效果</th>
+						<th></th>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<button id="missionAddButton" class="addButton"></button>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="buffset">
+				<h1>现有相册加成</h1>
+				<table id="collectionblocks">
+					<tr>
+						<th>加成范围</th>
+						<th>效果</th>
+						<th></th>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<button id="collectionAddButton" class="addButton"></button>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="homelight" class="buffset">
+				家园之光加成:
+				<input class="percent" type="number" min="1" max="100" value="25"/><b>%</b>
+			</div>
+		</aside>
+		<aside class="right">
+			<div>
+				<h1>当前建筑列表</h1>
+				<div class="onlinestatus">是否在线: <input id="online" type="checkbox" value="1" checked></div>
+				<table id="buildingblocks">
+					<tr>
+						<th>建筑类型</th>
+						<th>星级</th>
+						<th>等级</th>
+						<th></th>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<button id="buildingAddButton" class="addButton"></button>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<button id="save" class="saveButton">保存当前配置</button>
+		</aside>
+		
+	</div>
+	<footer class="footer">
+		<div style="display: none">Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a></div>
+		<div class="bottomline">Version 1.048596 @ 2019 by <a href="https://github.com/zz920">zz920</a> </div>
+	</footer>
+
+	<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+	<script src="config.json"></script>
+	<script src="js/data.json"></script>
+	<script src="js/perm.js"></script>
+	<script src="js/simulator.js"></script>
+	<script src="js/core.js"></script>
+</body>
+</html>
