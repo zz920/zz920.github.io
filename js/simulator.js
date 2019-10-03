@@ -300,7 +300,7 @@ function loadConfigFile() {
 	}
 
 	//clean all existing ones
-	
+
 	$.each(['buildingblocks', 'missionblocks', 'policyblocks', 'collectionblocks'], function(i, v){
 		while ($("#" + v + " tr").length > 2) {
 			$("#" + v + " tr").eq(-2).remove();
